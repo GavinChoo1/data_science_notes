@@ -79,6 +79,9 @@ To put it all together, here is a quick reference table of exactly how the ACF p
 
 By checking the ACF plot at the beginning, middle, and end of your workflow, you ensure that you successfully strip away all the predictable patterns (trends and seasonality) until you are left with nothing but pure, uncorrelated random error.
 
+> [!TIP]
+> While the ACF plot measures total autocorrelation, the **Partial Autocorrelation Function (PACF)** is a complementary tool that strips away indirect correlation. To learn how it works and how to use it for model selection, check out the [Deep Dive: Partial Autocorrelation Function (PACF)](5_pacf.md).
+
 ---
 
 ## Visual Examples of ACF Plots
