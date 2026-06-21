@@ -1,3 +1,11 @@
+---
+id: timeseries-trend
+title: The Trend
+desc: ''
+updated: 1782008301000
+created: 1782008301000
+---
+
 # 2. The Trend ($T_t$)
 
 ## Detrending
@@ -10,19 +18,27 @@ Generate a simple line plot of your raw data. Look closely at the overall long-t
 - **The Math**: $T_t = \beta_0 + \beta_1 t$
 - **Best Detrending Tool**: Linear Regression. Fit a straight line to the data and subtract it.
 
+![A. Linear Trend Before and After Detrending](assets/linear_trend.png)
+
 #### B. Non-Linear / Polynomial Trend
 - **What it looks like**: The data curves. It might start slow and accelerate upward (exponential), or rise and then plateau (logarithmic).
 - **The Math**: $T_t = \beta_0 + \beta_1 t + \beta_2 t^2 + \dots$
 - **Best Detrending Tool**: Polynomial Regression. Fit a curve by choosing the appropriate degree (order) based on the number of turns in the graph.
 
+![B. Non-Linear Trend Before and After Detrending](assets/poly_trend.png)
+
 #### C. Changing / Non-Parametric Trend
 - **What it looks like**: The trend is smooth but erratic—it goes up for two years, flattens out, dips, and then goes up again. A single global equation cannot capture it.
 - **Best Detrending Tool**: Moving Averages or STL / HP Filters. These tools calculate a rolling baseline that bends dynamically with the data.
+
+![C. Changing Trend Before and After Detrending](assets/changing_trend.png)
 
 #### D. Stochastic Trend (Random Walk)
 - **What it looks like**: Highly erratic day-to-day or step-by-step drift with no stable long-term shape (very common in stock prices).
 - **The Math**: $Y_t = Y_{t-1} + \epsilon_t$
 - **Best Detrending Tool**: Differencing. Do not try to fit a trend line. Instead, subtract yesterday's value from today's value ($Y_t - Y_{t-1}$).
+
+![D. Stochastic Trend Before and After Detrending](assets/stochastic_trend.png)
 
 ### Step 2: Statistical Verification (The KPSS Test)
 If you aren't sure whether your visual guess is correct, you can back it up with a statistical test. The KPSS (Kwiatkowski-Phillips-Schmidt-Shin) test is specifically designed for this.

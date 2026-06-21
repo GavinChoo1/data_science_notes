@@ -1,3 +1,11 @@
+---
+id: timeseries-introduction
+title: The 4 Components of a Time Series
+desc: ''
+updated: 1782008301000
+created: 1782008301000
+---
+
 # The 4 Components of a Time Series
 
 ## 1. The Trend ($T_t$)
