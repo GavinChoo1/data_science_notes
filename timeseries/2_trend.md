@@ -113,8 +113,8 @@ $$LM = \frac{\sum_{t=1}^{T} S_t^2}{T^2 \cdot s^2(l)}$$
 > - If $LM$ < critical value: Fail to reject $H_0$. Data is stationary.
 
 > [!NOTE]
-> For more information on the difference between stationary error and a random walk, read:
-> [Deep Dive: Random Walk vs. Stationary Error](3_random_walk_vs_stationary.md)
+> For more information on stationary error, read:
+> [Deep Dive: Stationary Error](3_random_walk_vs_stationary.md)
 
 ---
 
