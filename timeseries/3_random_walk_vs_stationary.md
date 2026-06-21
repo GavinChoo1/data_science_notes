@@ -50,7 +50,7 @@ If you plot a purely stationary error series on a graph, it has a highly distinc
 ### The Three Visual Tests:
 1. **The Horizontal Baseline**: The data should constantly cross and oscillate around a horizontal line (usually zero). If the data starts drifting up or down, it is no longer a stationary error—it has a lingering trend.
 2. **The Constant "Bandwidth"**: If you draw a boundary line across the top peaks and another across the bottom valleys, those two lines should be perfectly parallel. If the valleys and peaks expand over time (forming a megaphone shape), the variance is changing, meaning it is non-stationary.
-3. **The Autocorrelation Function (ACF) Plot**: To visually check for independence, data scientists use an ACF plot, which measures how correlated a data point is with its past selves. For a stationary error, the plot should show a massive spike at lag 0 (since a point is 100% correlated with itself), and absolutely nothing at any other lag.
+3. **The Autocorrelation Function (ACF) Plot**: To visually check for independence, data scientists use an ACF plot, which measures how correlated a data point is with its past selves. For a stationary error, the plot should show a massive spike at lag 0 (since a point is 100% correlated with itself), and absolutely nothing at any other lag (for more details, see [Deep Dive: Autocorrelation Function (ACF)](4_acf.md)).
 
 ## Why Data Scientists Obsess Over Stationary Error
 
@@ -144,6 +144,8 @@ The most practical way to distinguish the two is to observe how they respond to 
 ### 2. Visual Comparison
 
 If you simulate and plot both processes over time, their visual characteristics are completely distinct.
+
+![Random Walk vs. Stationary Error Comparison](assets/rw_vs_stationary.png)
 
 **What you see in the Stationary Error plot:**
 - The data looks like a uniform, jagged band of noise.
