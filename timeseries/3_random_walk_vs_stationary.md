@@ -119,7 +119,57 @@ $$Var(Y_t) = t \cdot \sigma^2$$
 > [!WARNING]
 > Look closely at that result: **The variance depends on time ($t$)**. As time goes forward, the variance scales linearly with $t$, exploding toward infinity. This is why a random walk is non-stationary: the envelope of where the data could wander expands wider and wider the further into the future you go.
 
-## 4. Variation: Random Walk with Drift
+## 4. Side-by-Side Comparison
+
+### The Comparison Matrix
+
+| Feature | Stationary Error (White Noise) | Random Walk |
+| :--- | :--- | :--- |
+| **Core Equation** | $Y_t = \varepsilon_t$ | $Y_t = Y_{t-1} + \varepsilon_t$ |
+| **Expanded Structure** | $Y_t = \varepsilon_t$ | $Y_t = Y_0 + \sum_{i=1}^{t} \varepsilon_i$ |
+| **Memory** | Zero Memory (Every step resets completely). | Infinite Memory (Accumulates every historical shock). |
+| **Mean over Time ($E(Y_t)$)** | Constant (Usually centered at $0$). | Constant ($Y_0$, assuming no drift). |
+| **Variance over Time ($Var(Y_t)$)** | Constant ($\sigma^2$) | Explodes with time ($t \cdot \sigma^2$) |
+| **Stationarity** | Strictly Stationary | Non-Stationary |
+| **Behavior After a Shock** | Immediately snaps back to the baseline. | Permanently changes its baseline. |
+| **How to Remove It** | You don't. This is your target clean noise. | Differencing ($Y_t - Y_{t-1}$) |
+
+### 1. Deep Dive into Behavior After a Shock
+
+The most practical way to distinguish the two is to observe how they respond to a single, sudden random event (a "shock," like $\varepsilon_t = +10$).
+
+- **Stationary Error Response**: Because there is no connection to the past, a shock is a one-time event. If a massive storm hits a business today, sales drop today. Tomorrow, the storm is gone, the data completely forgets about it, and sales instantly bounce right back to the long-term average.
+- **Random Walk Response**: Because today's baseline is built directly on top of yesterday's value, a shock is permanent. If a competitor opens next door today, it alters your baseline revenue. That negative shock is carried forward into tomorrow's calculation, and the day after that, altering the trajectory of the series forever.
+
+### 2. Visual Comparison
+
+If you simulate and plot both processes over time, their visual characteristics are completely distinct.
+
+**What you see in the Stationary Error plot:**
+- The data looks like a uniform, jagged band of noise.
+- It tightly hugs a perfectly horizontal baseline (usually zero).
+- The height of the peaks and the depth of the valleys stay perfectly consistent from the beginning of the graph to the end because the variance is constant.
+
+**What you see in the Random Walk plot:**
+- The data forms long, smooth-looking macro "trends" (even though there is no underlying deterministic trend model). It wanders far away from where it started.
+- The boundaries of where the data could potentially wander expand outward over time because the variance grows linearly with time ($t$).
+
+### 3. The Mathematical Breakdown of Variance
+
+The fundamental reason a random walk is non-stationary comes down to the math behind its variance.
+
+For Stationary Error, the variance at time step $100$ is exactly the same as the variance at time step $1$:
+$$Var(Y_{1}) = \sigma^2 \quad \text{and} \quad Var(Y_{100}) = \sigma^2$$
+
+For a Random Walk, because the random shocks accumulate over time ($\sum_{i=1}^{t} \varepsilon_i$), the variance scales with time ($t$). If individual shocks have a variance of $\sigma^2 = 5$:
+- **At $t = 1$**: $Var(Y_1) = 1 \cdot 5 = 5$
+- **At $t = 100$**: $Var(Y_{100}) = 100 \cdot 5 = 500$
+- **At $t = 1000$**: $Var(Y_{1000}) = 1000 \cdot 5 = 5000$
+
+> [!NOTE]
+> As $t \to \infty$, the variance approaches infinity, meaning the system becomes mathematically unstable and completely non-stationary.
+
+## 5. Variation: Random Walk with Drift
 
 In many real-world applications (like the stock market, where prices generally trend upward over decades), a constant baseline trend is added to the model. This is called a **Random Walk with Drift**.
 
