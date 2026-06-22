@@ -36,6 +36,100 @@ Where:
 
 ---
 
+## Concrete Example: Step-by-Step ACF Calculation
+
+To understand how to calculate the Autocorrelation Function (ACF) step-by-step, we need to look at how a time series correlates with itself at different points in time.
+
+When separating a random walk from a stationary error, the ACF is our definitive proof: a stationary error's ACF drops to zero immediately, while a random walk's ACF decays incredibly slowly.
+
+Here is the step-by-step mathematical calculation for the ACF at Lag 1 ($k=1$), which measures how much today's values depend on yesterday's values.
+
+### The Formula
+
+The autocorrelation at lag $k$ (written as $\rho_k$ or "rho") is calculated by dividing the autocovariance ($c_k$) by the total variance ($c_0$):
+
+$$\rho_k = \frac{c_k}{c_0}$$
+
+Where the autocovariance at lag $k$ is:
+
+$$c_k = \frac{1}{T} \sum_{t=k+1}^{T} (Y_t - \bar{Y})(Y_{t-k} - \bar{Y})$$
+
+### Step-by-Step Calculation Example
+
+Let's use a short time series of $T = 5$ observations:
+
+$$Y = [2, 4, 5, 4, 5]$$
+
+#### Step 1: Calculate the Mean ($\bar{Y}$)
+
+First, find the simple average of the entire dataset.
+
+$$\bar{Y} = \frac{2 + 4 + 5 + 4 + 5}{5} = \frac{20}{5} = 4$$
+
+#### Step 2: Calculate the Variance / Lag 0 Covariance ($c_0$)
+
+This acts as our denominator. It measures how much the data varies around its own mean. We subtract the mean from each point, square it, and sum them up:
+
+$$c_0 = \frac{1}{5} \left[ (2-4)^2 + (4-4)^2 + (5-4)^2 + (4-4)^2 + (5-4)^2 \right]$$
+
+$$c_0 = \frac{1}{5} \left[ (-2)^2 + (0)^2 + (1)^2 + (0)^2 + (1)^2 \right]$$
+
+$$c_0 = \frac{1}{5} [4 + 0 + 1 + 0 + 1] = \frac{6}{5} = 1.2$$
+
+#### Step 3: Align the Data for Lag 1 ($k=1$)
+
+To find the covariance at Lag 1, we create a side-by-side comparison of the original data ($Y_t$) and the data shifted back by one time step ($Y_{t-1}$):
+
+| Time ($t$) | Original ($Y_t$) | Lagged ($Y_{t-1}$) |
+| :---: | :---: | :---: |
+| 1 | 2 | *No past data* |
+| 2 | 4 | 2 |
+| 3 | 5 | 4 |
+| 4 | 4 | 5 |
+| 5 | 5 | 4 |
+
+#### Visualizing Lag 1: The Scatter Plot (Lag Plot)
+
+Before calculating the numbers, we can visualize this alignment. Autocorrelation is mathematically identical to a standard Pearson correlation, but calculated over a **lagged scatter plot** where we plot "yesterday's values" ($Y_{t-1}$) on the X-axis against "today's values" ($Y_t$) on the Y-axis:
+
+![Lag 1 Scatter Plot showing Y_t vs Y_{t-1} for the sample data](assets/acf_lag1_scatter.png)
+
+Looking at this plot, the points do not follow the diagonal line (some go up, some go down). This visual lack of a linear trend indicates that the correlation at Lag 1 will be close to $0$.
+
+#### Step 4: Calculate the Lag 1 Autocovariance ($c_1$)
+
+Now, we calculate the covariance using only the pairs that line up (from $t=2$ to $t=5$). For each pair, we subtract the mean ($\bar{Y} = 4$) from both values and multiply them together:
+
+$$c_1 = \frac{1}{5} \sum_{t=2}^{5} (Y_t - 4)(Y_{t-1} - 4)$$
+
+Let's calculate each of the 4 pairs:
+
+- **Pair 1 ($t=2$)**: $(4 - 4) \times (2 - 4) = 0 \times (-2) = 0$
+- **Pair 2 ($t=3$)**: $(5 - 4) \times (4 - 4) = 1 \times 0 = 0$
+- **Pair 3 ($t=4$)**: $(4 - 4) \times (5 - 4) = 0 \times 1 = 0$
+- **Pair 4 ($t=5$)**: $(5 - 4) \times (4 - 4) = 1 \times 0 = 0$
+
+Summing them up:
+
+$$c_1 = \frac{1}{5} [0 + 0 + 0 + 0] = 0$$
+
+#### Step 5: Compute the Final Autocorrelation ($\rho_1$)
+
+Divide the Lag 1 autocovariance by the total variance:
+
+$$\rho_1 = \frac{c_1}{c_0} = \frac{0}{1.2} = 0$$
+
+### How to Read This Result
+
+An ACF value of $0$ at Lag 1 proves that there is absolutely zero linear relationship between what happened yesterday and what happened today.
+
+If you plot the ACF across multiple lags (Lag 1, Lag 2, Lag 3, etc.), you get an ACF Plot:
+
+- **Stationary Error**: The ACF value will be $1$ at Lag 0, and instantly drop close to $0$ for Lag 1 and beyond. It shows the data has no memory.
+- **Random Walk**: Because a random walk carries its trend forward perpetually, its ACF calculation would yield values very close to $1.0$ for Lag 1, Lag 2, Lag 3, and drop off incredibly slowly over time.
+
+---
+
 ## How to Read an ACF Plot: Three Example Scenarios
 
 An ACF plot charts the lag number ($k = 1, 2, 3, \dots$) on the X-axis and the correlation coefficient ($r_k$) on the Y-axis. It also includes a shaded blue region representing the **95% confidence interval** (statistical significance boundary).
