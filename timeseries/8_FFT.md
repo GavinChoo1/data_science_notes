@@ -59,15 +59,15 @@ $$X_k = \sum_{n=0}^{3} x_n \left[ \cos\left(\frac{\pi k n}{2}\right) - j \sin\le
 
 Here is the reference table of trigonometric values we will need:
 
-| Angle | $\cos$ | $\sin$ |
-| :---: | :----: | :----: |
-| $0$ | $1$ | $0$ |
-| $\frac{\pi}{2}$ | $0$ | $1$ |
-| $\pi$ | $-1$ | $0$ |
-| $\frac{3\pi}{2}$ | $0$ | $-1$ |
-| $2\pi$ | $1$ | $0$ |
-| $3\pi$ | $-1$ | $0$ |
-| $\frac{9\pi}{2}$ | $0$ | $1$ |
+|      Angle       | $\cos$ | $\sin$ |
+| :--------------: | :----: | :----: |
+|       $0$        |  $1$   |  $0$   |
+| $\frac{\pi}{2}$  |  $0$   |  $1$   |
+|      $\pi$       |  $-1$  |  $0$   |
+| $\frac{3\pi}{2}$ |  $0$   |  $-1$  |
+|      $2\pi$      |  $1$   |  $0$   |
+|      $3\pi$      |  $-1$  |  $0$   |
+| $\frac{9\pi}{2}$ |  $0$   |  $1$   |
 
 ### Step 2: Calculate $X_0$ (Frequency index $k = 0$)
 
@@ -88,11 +88,11 @@ $$X_1 = x_0[\cos(0)-j\sin(0)] + x_1[\cos(\tfrac{\pi}{2})-j\sin(\tfrac{\pi}{2})] 
 Using the trig table:
 
 | $n$ | $x_n$ | $\cos$ | $\sin$ | $x_n \cdot [\cos - j\sin]$ |
-| :-: | :---: | :----: | :----: | :-------------------------: |
-| 0 | 1 | $1$ | $0$ | $1 \cdot (1 - 0j) = 1$ |
-| 1 | 2 | $0$ | $1$ | $2 \cdot (0 - 1j) = -2j$ |
-| 2 | 1 | $-1$ | $0$ | $1 \cdot (-1 - 0j) = -1$ |
-| 3 | 0 | $0$ | $-1$ | $0 \cdot (0 + 1j) = 0$ |
+| :-: | :---: | :----: | :----: | :------------------------: |
+|  0  |   1   |  $1$   |  $0$   |   $1 \cdot (1 - 0j) = 1$   |
+|  1  |   2   |  $0$   |  $1$   |  $2 \cdot (0 - 1j) = -2j$  |
+|  2  |   1   |  $-1$  |  $0$   |  $1 \cdot (-1 - 0j) = -1$  |
+|  3  |   0   |  $0$   |  $-1$  |   $0 \cdot (0 + 1j) = 0$   |
 
 Sum them up:
 
@@ -103,11 +103,11 @@ $$X_1 = 1 - 2j - 1 + 0 = \mathbf{-2j}$$
 Plug in $k = 2$:
 
 | $n$ | $x_n$ | Angle $\frac{\pi \cdot 2 \cdot n}{2}$ | $\cos$ | $\sin$ | $x_n \cdot [\cos - j\sin]$ |
-| :-: | :---: | :------------------------------------: | :----: | :----: | :-------------------------: |
-| 0 | 1 | $0$ | $1$ | $0$ | $1 \cdot (1 - 0j) = 1$ |
-| 1 | 2 | $\pi$ | $-1$ | $0$ | $2 \cdot (-1 - 0j) = -2$ |
-| 2 | 1 | $2\pi$ | $1$ | $0$ | $1 \cdot (1 - 0j) = 1$ |
-| 3 | 0 | $3\pi$ | $-1$ | $0$ | $0 \cdot (-1 - 0j) = 0$ |
+| :-: | :---: | :-----------------------------------: | :----: | :----: | :------------------------: |
+|  0  |   1   |                  $0$                  |  $1$   |  $0$   |   $1 \cdot (1 - 0j) = 1$   |
+|  1  |   2   |                 $\pi$                 |  $-1$  |  $0$   |  $2 \cdot (-1 - 0j) = -2$  |
+|  2  |   1   |                $2\pi$                 |  $1$   |  $0$   |   $1 \cdot (1 - 0j) = 1$   |
+|  3  |   0   |                $3\pi$                 |  $-1$  |  $0$   |  $0 \cdot (-1 - 0j) = 0$   |
 
 Sum them up:
 
@@ -118,11 +118,11 @@ $$X_2 = 1 - 2 + 1 + 0 = \mathbf{0}$$
 Plug in $k = 3$:
 
 | $n$ | $x_n$ | Angle $\frac{\pi \cdot 3 \cdot n}{2}$ | $\cos$ | $\sin$ | $x_n \cdot [\cos - j\sin]$ |
-| :-: | :---: | :------------------------------------: | :----: | :----: | :-------------------------: |
-| 0 | 1 | $0$ | $1$ | $0$ | $1 \cdot (1 - 0j) = 1$ |
-| 1 | 2 | $\frac{3\pi}{2}$ | $0$ | $-1$ | $2 \cdot (0 + 1j) = 2j$ |
-| 2 | 1 | $3\pi$ | $-1$ | $0$ | $1 \cdot (-1 - 0j) = -1$ |
-| 3 | 0 | $\frac{9\pi}{2}$ | $0$ | $1$ | $0 \cdot (0 - 1j) = 0$ |
+| :-: | :---: | :-----------------------------------: | :----: | :----: | :------------------------: |
+|  0  |   1   |                  $0$                  |  $1$   |  $0$   |   $1 \cdot (1 - 0j) = 1$   |
+|  1  |   2   |           $\frac{3\pi}{2}$            |  $0$   |  $-1$  |  $2 \cdot (0 + 1j) = 2j$   |
+|  2  |   1   |                $3\pi$                 |  $-1$  |  $0$   |  $1 \cdot (-1 - 0j) = -1$  |
+|  3  |   0   |           $\frac{9\pi}{2}$            |  $0$   |  $1$   |   $0 \cdot (0 - 1j) = 0$   |
 
 Sum them up:
 
@@ -140,12 +140,12 @@ $$X = [4, \ -2j, \ 0, \ 2j]$$
 
 Because these are complex numbers, scientists calculate the **Magnitude** (absolute strength) of each frequency using the Pythagorean theorem $|X_k| = \sqrt{\text{Re}^2 + \text{Im}^2}$:
 
-| Frequency Index ($k$) | $X_k$ | $|X_k| = \sqrt{\text{Re}^2 + \text{Im}^2}$ |
-| :--------------------: | :---: | :------------------------------------------: |
-| 0 (DC Component) | $4$ | $\sqrt{4^2 + 0^2} = 4$ |
-| 1 | $-2j$ | $\sqrt{0^2 + (-2)^2} = 2$ |
-| 2 | $0$ | $\sqrt{0^2 + 0^2} = 0$ |
-| 3 | $2j$ | $\sqrt{0^2 + 2^2} = 2$ |
+| Frequency Index ($k$) | $X_k$ |             $             | X_k | = \sqrt{\text{Re}^2 + \text{Im}^2}$ |
+| :-------------------: | :---: | :-----------------------: | --- | ----------------------------------- |
+|   0 (DC Component)    |  $4$  |  $\sqrt{4^2 + 0^2} = 4$   |
+|           1           | $-2j$ | $\sqrt{0^2 + (-2)^2} = 2$ |
+|           2           |  $0$  |  $\sqrt{0^2 + 0^2} = 0$   |
+|           3           | $2j$  |  $\sqrt{0^2 + 2^2} = 2$   |
 
 > [!NOTE]
 > Notice how Frequency 1 and Frequency 3 have the exact same magnitude ($2$)? That is due to a property called **symmetry**. In an FFT of real-world data, the second half of the output array is always a **mirror image** of the first half! This is why, in practice, you only need to look at the first $N/2$ frequency bins.
