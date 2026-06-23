@@ -84,7 +84,7 @@ To calculate the partial autocorrelation $\phi_{kk}$ at lag $k$, we use the foll
 
 2. **At Lag 2 ($k=2$)**:
    $$\phi_{22} = \frac{r_2 - \phi_{11} r_1}{1 - \phi_{11} r_1} = \frac{r_2 - r_1^2}{1 - r_1^2}$$
-   *Intermediate coefficient needed for the next step:*
+   _Intermediate coefficient needed for the next step:_
    $$\phi_{21} = \phi_{11} - \phi_{22}\phi_{11}$$
 
 3. **At Lag 3 ($k=3$)**:
@@ -94,11 +94,12 @@ To calculate the partial autocorrelation $\phi_{kk}$ at lag $k$, we use the foll
 
 ### Step-by-Step Calculation Example
 
-Let's use the exact same short time series of $T = 5$ observations from the [Autocorrelation Function (ACF) note](4_acf.md):
+Let's use the exact same short time series of $T = 5$ observations from the [Autocorrelation Function (ACF) note](5_acf.md):
 
 $$Y = [2, 4, 5, 4, 5]$$
 
 From our ACF calculations in the previous note, we already know:
+
 - The mean: $\bar{Y} = 4$
 - The total variance (Lag 0 covariance): $c_0 = 1.2$
 - The Lag 1 autocovariance: $c_1 = 0 \implies$ Lag 1 autocorrelation $r_1 = 0$
@@ -110,12 +111,12 @@ Let's compute the Lag 2 autocorrelation ($r_2$) and use the Durbin-Levinson recu
 First, we find the Lag 2 autocovariance ($c_2$) by aligning the data with a lag of 2:
 
 | Time ($t$) | Original ($Y_t$) | Lagged ($Y_{t-2}$) |
-| :---: | :---: | :---: |
-| 1 | 2 | *No past data* |
-| 2 | 4 | *No past data* |
-| 3 | 5 | 2 |
-| 4 | 4 | 4 |
-| 5 | 5 | 5 |
+| :--------: | :--------------: | :----------------: |
+|     1      |        2         |   _No past data_   |
+|     2      |        4         |   _No past data_   |
+|     3      |        5         |         2          |
+|     4      |        4         |         4          |
+|     5      |        5         |         5          |
 
 Now we calculate the covariance using only the 3 pairs that line up (from $t=3$ to $t=5$):
 
